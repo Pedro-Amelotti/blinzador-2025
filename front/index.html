@@ -8,6 +8,7 @@
     <link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script" />
     <link rel="preload" href="https://scripts.converteai.net/bff5868f-b8e9-4bb4-af45-52d9b7681a6e/players/6827adf6562de3934a876ad4/v4/player.js" as="script" />
     <link rel="preload" href="https://images.converteai.net/bff5868f-b8e9-4bb4-af45-52d9b7681a6e/players/6827adf6562de3934a876ad4/thumbnail.jpg" as="image" />
+    <link rel="preload" href="https://cdn.converteai.net/bff5868f-b8e9-4bb4-af45-52d9b7681a6e/6827abbccfbc403c9233109e/main.m3u8" as="fetch" />
 
     <link rel="dns-prefetch" href="https://cdn.converteai.net" />
     <link rel="dns-prefetch" href="https://scripts.converteai.net" />
@@ -71,7 +72,6 @@
             .timer-mobile {
                 display: none; /* Esconde o timer em telas grandes */
             }
-            
         }
 
         @media (max-width: 720px) {
@@ -80,7 +80,7 @@
                 height: auto;
                 padding-top: 0;
                 padding-bottom: 0;
-            }   
+            }
         }
     </style>
 </head>
@@ -89,8 +89,8 @@
     <div class="w-full min-h-screen flex flex-col main-section-mobile-height">
 
         <div class="flex-grow">
-        
-    <main class="relative w-full [background:linear-gradient(180deg,rgba(27,95,138,1)_0%,rgba(53,132,182,1)_100%)]" role="main">
+
+            <main class="relative w-full [background:linear-gradient(180deg,rgba(27,95,138,1)_0%,rgba(53,132,182,1)_100%)]" role="main">
                 <div class="relative min-h-[80vh] w-full flex flex-col items-center justify-center p-4 bg-cover bg-center" style="background-image: url('../assets/png/hero.png');">
                     <header class="text-center hidden lg:block">
                         <h1 class="w-full max-w-4xl font-['Inter',Helvetica] font-semibold text-2xl sm:text-4xl leading-tight">
@@ -137,7 +137,7 @@
             <!-- colocar data-delay dentro dessa div -->
             <div data-delay>
 
-                <section id="offers" class="py-16 sm:py-24 bg-gray-50 overflow-hidden" aria-labelledby="offers-heading">
+<section id="offers" class="py-16 sm:py-24 bg-gray-50 overflow-hidden" aria-labelledby="offers-heading">
     <div class="container mx-auto px-4 flex flex-col items-center gap-12">
         <header class="text-center">
             <h2 id="offers-heading" class="font-['Inter',Helvetica] font-semibold text-[#0f3248] text-3xl md:text-4xl">
@@ -148,7 +148,7 @@
             </p>
         </header>
 
-        <div class="flex flex-col lg:flex-row items-center justify-center gap-20 w-full" style="padding-top: 2vh;">
+        <div class="flex flex-col lg:flex-row items-center justify-center gap-20 w-full" style="padding-top: 2vh">
             
             <article class="relative w-full max-w-sm lg:w-1/3 rounded-[20px] overflow-hidden border border-solid border-gray-300 flex flex-col bg-white shadow-md order-3 lg:order-1">
                 <header class="w-full bg-[#3483b5] p-4 flex-shrink-0">
@@ -283,7 +283,7 @@
     </div>
 </section>
 
-                <section id="guarantee" class="py-16 sm:py-24 h-90 [background:linear-gradient(90deg,rgba(53,132,182,1)_0%,rgba(27,95,138,1)_100%)] text-white" aria-labelledby="guarantee-heading">
+<section id="guarantee" class="py-16 sm:py-24 h-90 [background:linear-gradient(90deg,rgba(53,132,182,1)_0%,rgba(27,95,138,1)_100%)] text-white" aria-labelledby="guarantee-heading">
                     <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-center gap-12">
                     
                         <div class="flex-shrink-0 relative w-full h-auto md:w-[500px] md:h-[500px] flex items-center justify-center brilho-central overflow-hidden">
@@ -311,7 +311,8 @@
                     
                     </div>
                 </section>
-                <section id="faq" class="py-16 sm:py-24 bg-white" aria-labelledby="faq-heading">
+
+<section id="faq" class="py-16 sm:py-24 bg-white" aria-labelledby="faq-heading">
     <div class="container mx-auto px-4 max-w-4xl flex flex-col items-center gap-12">
         <header class="text-center">
             <p class="text-2xl font-semibold text-green-600">FAQ</p>
@@ -349,10 +350,10 @@
                     </p>
                 </div>
             </div>
-            
+
             <div class="faq-item w-full bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
                 <div class="faq-question flex justify-between items-center p-5 cursor-pointer select-none">
-                    <h3 class="text-xl font-medium text-gray-800">Is it safe?</h3>
+                    <h3 class="text-xl font-medium text-gray-800">Is Blinzador safe?</h3>
                     <span class="faq-arrow text-gray-500">
                         <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
                     </span>
@@ -363,6 +364,50 @@
                     </p>
                 </div>
             </div>
+
+            <div class="faq-item w-full bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+                <div class="faq-question flex justify-between items-center p-5 cursor-pointer select-none">
+                    <h3 class="text-xl font-medium text-gray-800">How do I apply Blinzador for the best results?</h3>
+                    <span class="faq-arrow text-gray-500">
+                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9           5l7 7-7 7" /></svg>
+                    </span>
+                </div>
+                <div class="faq-answer px-5">
+                    <p class="py-4 text-xl text-gray-600 border-t border-gray-200">
+                        For optimal results, apply Blinzador twice daily to clean, dry nails. Ensure the solution covers the entire nail surface, the cuticles, and the surrounding skin. Allow it to absorb            completely before putting on socks or shoes. Consistency is the key to successfully eliminating the fungus.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item w-full bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+                <div class="faq-question flex justify-between items-center p-5 cursor-pointer select-none">
+                    <h3 class="text-xl font-medium text-gray-800">What are the key ingredients in Blinzador?</h3>
+                    <span class="faq-arrow text-gray-500">
+                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9           5l7 7-7 7" /></svg>
+                    </span>
+                </div>
+                <div class="faq-answer px-5">
+                    <p class="py-4 text-xl text-gray-600 border-t border-gray-200">
+                        Blinzador is formulated with a powerful blend of natural antifungal agents and essential oils, including Tea Tree Oil and Undecylenic Acid. These ingredients are clinically recognized for             their ability to fight fungus effectively while nourishing the skin and promoting healthy nail regeneration. Our formula is free from harsh chemicals.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item w-full bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+                <div class="faq-question flex justify-between items-center p-5 cursor-pointer select-none">
+                    <h3 class="text-xl font-medium text-gray-800">Can I use Blinzador on both fingernails and toenails?</h3>
+                    <span class="faq-arrow text-gray-500">
+                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9           5l7 7-7 7" /></svg>
+                    </span>
+                </div>
+                <div class="faq-answer px-5">
+                    <p class="py-4 text-xl text-gray-600 border-t border-gray-200">
+                        Yes, absolutely. Blinzador's formula is designed to be safe and effective for treating fungal infections on both toenails and fingernails. It works by targeting the fungus at its source,          regardless of the location, helping to restore the natural health and appearance of your nails.
+                    </p>
+                </div>
+            </div>
+            
+            
 
         </div>
 
@@ -427,98 +472,98 @@
     </script>
     <script>
         // Lógica da Página (Delay, FAQ, Botões)
-        document.addEventListener("DOMContentLoaded", () => {
-            // --- LÓGICA DO DATA-DELAY ---
-            console.log("1. DOM carregado. Iniciando script da página com fallback...");
-            const FALLBACK_TIMEOUT = 1800;
-            const delayContainer = document.querySelector('[data-delay]');
-            let contentHasBeenShown = false;
+    document.addEventListener("DOMContentLoaded", () => {
+        // --- LÓGICA DO DATA-DELAY ---
+        console.log("1. DOM carregado. Iniciando script da página com fallback...");
+        const FALLBACK_TIMEOUT = 1800;
+        const delayContainer = document.querySelector('[data-delay]');
+        let contentHasBeenShown = false;
 
-            const showContent = () => {
-                if (!contentHasBeenShown && delayContainer) {
-                    console.warn("EXIBINDO CONTEÚDO (seja pelo player ou pelo fallback).");
-                    delayContainer.classList.add('is-visible'); // CORREÇÃO: Usar classe para ativar a animação CSS
-                    contentHasBeenShown = true;
+        const showContent = () => {
+            if (!contentHasBeenShown && delayContainer) {
+                console.warn("EXIBINDO CONTEÚDO (seja pelo player ou pelo fallback).");
+                delayContainer.classList.add('is-visible'); // CORREÇÃO: Usar classe para ativar a animação CSS
+                contentHasBeenShown = true;
+            }
+        };
+
+        const fallbackTimer = setTimeout(() => {
+            console.warn(`FALLBACK: O tempo de espera (${FALLBACK_TIMEOUT / 1000}s) esgotou. Forçando a exibição do conteúdo.`);
+            showContent();
+        }, FALLBACK_TIMEOUT);
+
+        const player = document.querySelector("vturb-smartplayer");
+
+        if (player) {
+            console.log("2. Elemento do player ENCONTRADO.");
+
+            const setupPlayerLogic = (p) => {
+                console.log("4. Configuração do player pronta. Verificando 'pitchTime'...");
+                console.log("DEBUG: Objeto de dados do player:", p.data); // DEBUG: Inspecione o objeto de dados
+                const pitchTime = p.data?.config?.pitchTime;
+                console.log("5. Valor de 'pitchTime':", pitchTime);
+
+                if (typeof pitchTime === "number" && pitchTime > 0) {
+                    console.log(`6. 'pitchTime' é válido (${pitchTime}s). O player irá controlar a exibição.`);
+                    clearTimeout(fallbackTimer);
+                    p.displayHiddenElements(pitchTime, ["[data-delay]"]);
+                } else {
+                    console.warn(`AVISO: 'pitchTime' não é um número válido ou não foi encontrado. O fallback de ${FALLBACK_TIMEOUT / 1000}s continua ativo.`);
                 }
             };
-    
-            const fallbackTimer = setTimeout(() => {
-                console.warn(`FALLBACK: O tempo de espera (${FALLBACK_TIMEOUT / 1000}s) esgotou. Forçando a exibição do conteúdo.`);
-                showContent();
-            }, FALLBACK_TIMEOUT);
-    
-            const player = document.querySelector("vturb-smartplayer");
-    
-            if (player) {
-                console.log("2. Elemento do player ENCONTRADO.");
-    
-                const setupPlayerLogic = (p) => {
-                    console.log("4. Configuração do player pronta. Verificando 'pitchTime'...");
-                    console.log("DEBUG: Objeto de dados do player:", p.data); // DEBUG: Inspecione o objeto de dados
-                    const pitchTime = p.data?.config?.pitchTime;
-                    console.log("5. Valor de 'pitchTime':", pitchTime);
-    
-                    if (typeof pitchTime === "number" && pitchTime > 0) {
-                        console.log(`6. 'pitchTime' é válido (${pitchTime}s). O player irá controlar a exibição.`);
-                        clearTimeout(fallbackTimer);
-                        p.displayHiddenElements(pitchTime, ["[data-delay]"]);
-                    } else {
-                        console.warn(`AVISO: 'pitchTime' não é um número válido ou não foi encontrado. O fallback de ${FALLBACK_TIMEOUT / 1000}s continua ativo.`);
-                    }
-                };
-    
-                console.log("3. Aguardando o evento 'player:ready'...");
-                player.addEventListener("player:ready", () => {
-                    console.log("3b. Evento 'player:ready' disparado!");
-                    setupPlayerLogic(player);
-                });
-    
-            } else {
-                console.error("ERRO GRAVE: Elemento do player NÃO FOI ENCONTRADO. Exibindo conteúdo imediatamente como fallback.");
-                clearTimeout(fallbackTimer);
-                showContent();
-            }
 
-            // ---- LÓGICA DO TIMER REGRESSIVO ----
-            const countdownElement = document.getElementById('countdown-timer');
-            if (countdownElement) {
-                let durationInSeconds = 17 * 60 + 38; // 17 minutos e 38 segundos
-            
-                const timerInterval = setInterval(() => {
-                    if (durationInSeconds <= 0) {
-                        clearInterval(timerInterval);
-                        countdownElement.textContent = "00:00";
-                        return;
-                    }
-                
-                    durationInSeconds--;
-                
-                    const minutes = Math.floor(durationInSeconds / 60);
-                    const seconds = durationInSeconds % 60;
-                
-                    countdownElement.textContent = 
-                        `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-                
-                }, 1000);
-            }
-
-            // --- LÓGICA DO FAQ ---
-            document.querySelectorAll('.faq-question').forEach(button => {
-                button.addEventListener('click', () => {
-                    const faqItem = button.closest('.faq-item');
-                    faqItem.classList.toggle('active');
-                });
+            console.log("3. Aguardando o evento 'player:ready'...");
+            player.addEventListener("player:ready", () => {
+                console.log("3b. Evento 'player:ready' disparado!");
+                setupPlayerLogic(player);
             });
 
-            // --- LÓGICA DOS BOTÕES ---
-            document.querySelectorAll('button').forEach(button => {
-                button.addEventListener('click', (event) => {
-                    if (button.closest('vturb-smartplayer')) return;
-                    event.preventDefault();
-                    alert('Function not yet implemented');
-                });
+        } else {
+            console.error("ERRO GRAVE: Elemento do player NÃO FOI ENCONTRADO. Exibindo conteúdo imediatamente como fallback.");
+            clearTimeout(fallbackTimer);
+            showContent();
+        }
+
+        // ---- LÓGICA DO TIMER REGRESSIVO ----
+        const countdownElement = document.getElementById('countdown-timer');
+        if (countdownElement) {
+            let durationInSeconds = 17 * 60 + 38; // 17 minutos e 38 segundos
+
+            const timerInterval = setInterval(() => {
+                if (durationInSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    countdownElement.textContent = "00:00";
+                    return;
+                }
+
+                durationInSeconds--;
+
+                const minutes = Math.floor(durationInSeconds / 60);
+                const seconds = durationInSeconds % 60;
+
+                countdownElement.textContent =
+                    `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+            }, 1000);
+        }
+
+        // --- LÓGICA DO FAQ ---
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.closest('.faq-item');
+                faqItem.classList.toggle('active');
             });
         });
+
+        // --- LÓGICA DOS BOTÕES ---
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', (event) => {
+                if (button.closest('vturb-smartplayer')) return;
+                event.preventDefault();
+                alert('Function not yet implemented');
+            });
+        });
+    });
     </script>
 
 </body>
