@@ -80,6 +80,57 @@
             display: block; /* Mostra o timer por padrão */
         }
 
+        /* Estilos para a janela modal de pagamento */
+        .payment-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none; /* Oculta a modal por padrão */
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+        }
+        .payment-modal-overlay.active {
+            display: flex; /* Exibe a modal quando a classe 'active' é adicionada */
+        }
+        .payment-modal-content {
+            position: relative;
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+        .payment-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        /* Estilos de flip para o cartão de demonstração */
+        .card-container {
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            position: relative;
+        }
+        .card-container.flipped {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+        .card-back {
+            transform: rotateY(180deg);
+        }
         /* Estilos para Telas Grandes (1024px ou mais) */
         @media (min-width: 1024px) {
             .video-desktop {
@@ -139,7 +190,7 @@
                             Claim Your Discounted Blinzador Below For Huge Savings
                         </p>
                         <a href="#offers" class="block mt-4 cursor-pointer">
-                            <svg class="w-8 h-8 mx-auto text-yellow-500 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 13l-7 7-7-7m14-6l-7 7-7-7"></path></svg>
+                            <svg class="w-8 h-8 mx-auto text-yellow-500 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="assets/svg/angulo-pequeno-direito.svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 13l-7 7-7-7m14-6l-7 7-7-7"></path></svg>
                             <p class="text-lg mt-1 text-yellow-300">
                                 Order Your Blinzador - Choose Your Package
                             </p>
@@ -360,7 +411,7 @@
                 <div class="faq-question flex justify-between items-center p-5 cursor-pointer select-none">
                     <h3 class="text-xl font-medium text-gray-800">What is Blinzador?</h3>
                     <span class="faq-arrow text-gray-500">
-                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                        <svg class="w-6 h-6" xmlns="assets/svg/angulo-pequeno-direito.svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
                     </span>
                 </div>
                 <div class="faq-answer px-5">
@@ -375,7 +426,7 @@
                 <div class="faq-question flex justify-between items-center p-5 cursor-pointer select-none">
                     <h3 class="text-xl font-medium text-gray-800">How does it work?</h3>
                     <span class="faq-arrow text-gray-500">
-                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                        <svg class="w-6 h-6" xmlns="assets/svg/angulo-pequeno-direito.svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
                     </span>
                 </div>
                 <div class="faq-answer px-5">
@@ -390,7 +441,7 @@
                 <div class="faq-question flex justify-between items-center p-5 cursor-pointer select-none">
                     <h3 class="text-xl font-medium text-gray-800">Is Blinzador safe?</h3>
                     <span class="faq-arrow text-gray-500">
-                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                        <svg class="w-6 h-6" xmlns="assets/svg/angulo-pequeno-direito.svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
                     </span>
                 </div>
                 <div class="faq-answer px-5">
@@ -405,7 +456,7 @@
                 <div class="faq-question flex justify-between items-center p-5 cursor-pointer select-none">
                     <h3 class="text-xl font-medium text-gray-800">How do I apply Blinzador for the best results?</h3>
                     <span class="faq-arrow text-gray-500">
-                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9           5l7 7-7 7" /></svg>
+                        <svg class="w-6 h-6" xmlns="assets/svg/angulo-pequeno-direito.svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9           5l7 7-7 7" /></svg>
                     </span>
                 </div>
                 <div class="faq-answer px-5">
@@ -420,7 +471,7 @@
                 <div class="faq-question flex justify-between items-center p-5 cursor-pointer select-none">
                     <h3 class="text-xl font-medium text-gray-800">What are the key ingredients in Blinzador?</h3>
                     <span class="faq-arrow text-gray-500">
-                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9           5l7 7-7 7" /></svg>
+                        <svg class="w-6 h-6" xmlns="assets/svg/angulo-pequeno-direito.svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9           5l7 7-7 7" /></svg>
                     </span>
                 </div>
                 <div class="faq-answer px-5">
@@ -435,7 +486,7 @@
                 <div class="faq-question flex justify-between items-center p-5 cursor-pointer select-none">
                     <h3 class="text-xl font-medium text-gray-800">Can I use Blinzador on both fingernails and toenails?</h3>
                     <span class="faq-arrow text-gray-500">
-                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9           5l7 7-7 7" /></svg>
+                        <svg class="w-6 h-6" xmlns="assets/svg/angulo-pequeno-direito.svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9           5l7 7-7 7" /></svg>
                     </span>
                 </div>
                 <div class="faq-answer px-5">
@@ -478,6 +529,70 @@
             </div>
         </footer>
     </div>
+
+    <div id="payment-modal" class="payment-modal-overlay">
+        <div class="payment-modal-content">
+            <span class="payment-modal-close" id="close-modal-btn">&times;</span>
+            <h2 class="text-3xl font-bold text-center text-[#0f3248] mb-8">Informações de Pagamento</h2>
+            <h6 class="text-center text-gray-600 mb-6">NÃO Preencha os detalhes do seu cartão de crédito abaixo</h6>
+            <div class="card-container w-full max-w-sm aspect-[8/5] mx-auto mb-12">
+                <div id="card-front" class="card-front bg-gradient-to-br from-indigo-500 to-indigo-800 text-white rounded-xl shadow-lg p-6 flex flex-col justify-between">
+                    <div>
+                        <img src="assets/svg/visa-logo.svg" alt="Visa" class="h-8 mb-4 bg-white p-1 rounded-md w-8">
+                        <p id="card-number-display" class="font-mono text-xl md:text-2xl tracking-widest">
+                            #### #### #### ####
+                        </p>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-xs uppercase">Nome</p>
+                            <p id="card-name-display" class="font-semibold text-lg uppercase">Seu Nome Aqui</p>
+                        </div>
+                        <div>
+                            <p class="text-xs uppercase">Validade</p>
+                            <p id="card-expiry-display" class="font-semibold text-lg">MM/AA</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="card-back" class="card-back bg-gray-600 text-white rounded-xl shadow-lg p-6 flex flex-col justify-between">
+                    <div class="h-8 bg-black w-full my-6"></div>
+                    <div class="flex justify-end items-center mb-4">
+                        <p class="bg-white text-black font-semibold text-lg p-1 rounded-md min-w-[70px] text-center" id="card-cvv-display">
+                            ###
+                        </p>
+                    </div>
+                    <p class="text-xs italic text-center text-gray-300">Este é um formulário de demonstração.</p>
+                </div>
+            </div>
+            
+            <form class="space-y-6" id="payment-form">
+                <div>
+                    <label for="card-number-input" class="block text-sm font-medium text-gray-700">Número do Cartão</label>
+                    <input type="text" id="card-number-input" name="card-number" placeholder="0000 0000 0000 0000" maxlength="19" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#3584b6] focus:border-[#3584b6]">
+                </div>
+                <div>
+                    <label for="card-name-input" class="block text-sm font-medium text-gray-700">Nome Completo</label>
+                    <input type="text" id="card-name-input" name="card-name" placeholder="Seu Nome Completo" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#3584b6] focus:border-[#3584b6]">
+                </div>
+                <div class="flex space-x-4">
+                    <div class="w-1/2">
+                        <label for="expiry-date-input" class="block text-sm font-medium text-gray-700">Data de Validade (MM/AA)</label>
+                        <input type="text" id="expiry-date-input" name="expiry-date" placeholder="MM/AA" maxlength="5" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#3584b6] focus:border-[#3584b6]">
+                    </div>
+                    <div class="w-1/2">
+                        <label for="cvv-input" class="block text-sm font-medium text-gray-700">CVV</label>
+                        <input type="text" id="cvv-input" name="cvv" placeholder="###" maxlength="3" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#3584b6] focus:border-[#3584b6]">
+                    </div>
+                </div>
+                <button type="submit" class="w-full inline-flex items-center justify-center gap-3 px-12 py-4 rounded-full font-semibold text-xl text-white bg-gradient-to-r from-green-500 to-green-600 hover:opacity-90 border-b-4 border-green-700">
+                    <img class="w-6 h-6" src="assets/svg/carrinho-compras.svg" alt="">
+                    Confirmar Pagamento
+                </button>
+            </form>
+        </div>
+    </div>
+
+    
 
     <script>
         // Prevenção de erro de redefinição de custom elements.
@@ -616,6 +731,71 @@
 
             }, 1000);
         }
+        // --- LÓGICA DO MODAL DE PAGAMENTO (NOVA LÓGICA) ---
+        const paymentModal = document.getElementById('payment-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const paymentForm = document.getElementById('payment-form');
+
+        // Adiciona um evento de clique para abrir o modal
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', (event) => {
+                if (button.closest('vturb-smartplayer')) return;
+                event.preventDefault();
+                paymentModal.classList.add('active');
+            });
+        });
+
+        // Adiciona um evento de clique para fechar o modal
+        closeModalBtn.addEventListener('click', () => {
+            paymentModal.classList.remove('active');
+        });
+
+        // Lógica de demonstração do formulário de pagamento
+        const cardNumberInput = document.getElementById('card-number-input');
+        const cardNameInput = document.getElementById('card-name-input');
+        const expiryDateInput = document.getElementById('expiry-date-input');
+        const cvvInput = document.getElementById('cvv-input');
+
+        const cardNumberDisplay = document.getElementById('card-number-display');
+        const cardNameDisplay = document.getElementById('card-name-display');
+        const cardExpiryDisplay = document.getElementById('card-expiry-display');
+        const cardCvvDisplay = document.getElementById('card-cvv-display');
+
+        const cardContainer = document.querySelector('.card-container');
+
+        cardNumberInput.addEventListener('input', (e) => {
+            const value = e.target.value.replace(/\s/g, '').replace(/(\d{4})/g, '$1 ').trim();
+            e.target.value = value;
+            cardNumberDisplay.textContent = value.padEnd(19, '#');
+        });
+
+        cardNameInput.addEventListener('input', (e) => {
+            cardNameDisplay.textContent = e.target.value || 'Seu Nome Aqui';
+        });
+
+        expiryDateInput.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\s/g, '').replace(/(\d{2})(\d{2})/, '$1/$2');
+            e.target.value = value;
+            cardExpiryDisplay.textContent = value || 'MM/AA';
+        });
+
+        cvvInput.addEventListener('focus', () => {
+            cardContainer.classList.add('flipped');
+        });
+
+        cvvInput.addEventListener('blur', () => {
+            cardContainer.classList.remove('flipped');
+        });
+
+        cvvInput.addEventListener('input', (e) => {
+            cardCvvDisplay.textContent = e.target.value || '###';
+        });
+
+        paymentForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            alert('Pagamento de demonstração concluído!');
+            paymentModal.classList.remove('active'); // Fecha a modal após o envio
+        });
 
         // --- LÓGICA DO FAQ (ACORDEÃO) ---
         // Implementa a funcionalidade de acordeão para a seção de perguntas frequentes.
@@ -631,14 +811,16 @@
         // Adiciona um evento de clique genérico a todos os botões da página.
         // Atualmente, exibe um alerta, indicando que a função final (redirecionamento para checkout) ainda não foi implementada.
         // Ele ignora cliques em botões que possam estar dentro do componente do player de vídeo.
-        document.querySelectorAll('button').forEach(button => {
-            button.addEventListener('click', (event) => {
-                if (button.closest('vturb-smartplayer')) return;
-                event.preventDefault();
-                alert('Function not yet implemented');
-            });
-        });
+        // document.querySelectorAll('button').forEach(button => {
+        //     button.addEventListener('click', (event) => {
+        //         if (button.closest('vturb-smartplayer')) return;
+        //         event.preventDefault();
+        //         alert('Function not yet implemented');
+        //     });
+        // });
     });
+
+    
     </script>
 
 </body>
