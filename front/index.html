@@ -72,12 +72,12 @@
             z-index: 5; /* Coloca o brilho entre a elipse de fundo (0) e as garrafas (20) */
         }
 
-        /* Lógica de responsividade para mostrar/esconder elementos com base no tamanho da tela */
+        /* Lógica de responsividade para mostrar/esconder elementos */
         .video-desktop {
-            display: none; /* Esconde o vídeo por padrão */
+            display: block; 
         }
         .timer-mobile {
-            display: block; /* Mostra o timer por padrão */
+            display: block; /* Mostra o timer por padrão (em telas menores) */
         }
 
         /* Estilos para a janela modal de pagamento */
@@ -133,9 +133,6 @@
         }
         /* Estilos para Telas Grandes (1024px ou mais) */
         @media (min-width: 1024px) {
-            .video-desktop {
-                display: block; /* Mostra o vídeo em telas grandes */
-            }
             .timer-mobile {
                 display: none; /* Esconde o timer em telas grandes */
             }
