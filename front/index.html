@@ -17,6 +17,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         [data-delay] { display: none; }
         @keyframes fadeSlideDown {
             from { opacity: 0; transform: translateY(8px); }
@@ -24,7 +27,7 @@
         }
         [data-delay].is-visible {
             display: block;
-            animation: fadeSlideDown 700ms cubic-bezier(.2,.9,.2,1) both;
+            animation: fadeSlideDown 800ms cubic-bezier(.2,.9,.2,1) both;
         }
         .faq-answer {
             max-height: 0;
@@ -40,17 +43,56 @@
         .faq-item.active .faq-arrow {
             transform: rotate(90deg);
         }
+        .brilho-central::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%; /* Ajuste o tamanho do brilho */
+            height: 100%; /* Ajuste o tamanho do brilho */
+            border-radius: 50%; /* Garante que seja um círculo */
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 70%); /* Gradiente branco do centro para transparente */
+            filter: blur(30px); /* Desfoque para criar o efeito de brilho */
+            z-index: 5; /* Coloca o brilho entre a elipse de fundo (0) e as garrafas (20) */
+        }
+        .video-desktop {
+            display: none; /* Esconde o vídeo por padrão */
+        }
+        .timer-mobile {
+            display: block; /* Mostra o timer por padrão */
+        }
+
+        /* Estilos para Telas Grandes (1024px ou mais) */
+        @media (min-width: 1024px) {
+            .video-desktop {
+                display: block; /* Mostra o vídeo em telas grandes */
+            }
+            .timer-mobile {
+                display: none; /* Esconde o timer em telas grandes */
+            }
+            
+        }
+
+        @media (max-width: 720px) {
+            .main-section-mobile-height {
+                min-height: auto; /* Altura mínima para a seção principal em dispositivos móveis */
+                height: auto;
+                padding-top: 0;
+                padding-bottom: 0;
+            }   
+        }
     </style>
 </head>
 <body class="bg-white font-sans">
 
-    <div class="w-full min-h-screen flex flex-col">
+    <div class="w-full min-h-screen flex flex-col main-section-mobile-height">
 
         <div class="flex-grow">
         
     <main class="relative w-full [background:linear-gradient(180deg,rgba(27,95,138,1)_0%,rgba(53,132,182,1)_100%)]" role="main">
                 <div class="relative min-h-[80vh] w-full flex flex-col items-center justify-center p-4 bg-cover bg-center" style="background-image: url('../assets/png/hero.png');">
-                    <header class="text-center">
+                    <header class="text-center hidden lg:block">
                         <h1 class="w-full max-w-4xl font-['Inter',Helvetica] font-semibold text-2xl sm:text-4xl leading-tight">
                             <span class="text-[#fbda40]">Why Navy SEALs Never Get Toenail Fungus</span>
                             <br>
@@ -58,7 +100,7 @@
                         </h1>
                     </header>
 
-                    <div class="w-full max-w-sm md:max-w-4xl my-6">
+                    <div class="video-desktop w-full max-w-sm md:max-w-4xl my-6">
                         <div class="bg-white p-2 md:p-4 rounded-lg shadow-2xl">
                             <vturb-smartplayer id="vid-6827adf6562de3934a876ad4">
                                 <div class="thumbnail" style="position: relative; width: 100%; padding-top: 177.77%;">
@@ -68,7 +110,22 @@
                         </div>
                     </div>
 
-                    <div class="inline-flex items-center gap-4">
+                    <div class="timer-mobile w-full text-center py-8">
+                        <div id="countdown-timer" class="text-yellow-500 font-bold text-4xl md:text-5xl">
+                            17:38
+                        </div>
+                        <p class="mt-2 text-lg font-semibold md:text-base text-white">
+                            Claim Your Discounted Blinzador Below For Huge Savings
+                        </p>
+                        <a href="#offers" class="block mt-4 cursor-pointer">
+                            <svg class="w-8 h-8 mx-auto text-yellow-500 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 13l-7 7-7-7m14-6l-7 7-7-7"></path></svg>
+                            <p class="text-lg mt-1 text-yellow-300">
+                                Order Your Blinzador - Choose Your Package
+                            </p>
+                        </a>
+                    </div>
+
+                    <div class="lg:inline-flex items-center gap-4 hidden">
                         <img class="relative w-10 h-auto" src="../assets/png/som.png" alt="Volume icon">
                         <p class="font-['Inter',Helvetica] font-medium text-white text-white md:text-4xl">
                             Please turn up the volume
@@ -78,9 +135,9 @@
             </main>
 
             <!-- colocar data-delay dentro dessa div -->
-            <div>
-                
-                <section id="offers" class="py-16 sm:py-24 bg-gray-50" aria-labelledby="offers-heading">
+            <div data-delay>
+
+                <section id="offers" class="py-16 sm:py-24 bg-gray-50 overflow-hidden" aria-labelledby="offers-heading">
     <div class="container mx-auto px-4 flex flex-col items-center gap-12">
         <header class="text-center">
             <h2 id="offers-heading" class="font-['Inter',Helvetica] font-semibold text-[#0f3248] text-3xl md:text-4xl">
@@ -91,9 +148,9 @@
             </p>
         </header>
 
-        <div class="flex flex-col lg:flex-row justify-center gap-20 w-full" style="padding-top: 2vh;">
+        <div class="flex flex-col lg:flex-row items-center justify-center gap-20 w-full" style="padding-top: 2vh;">
             
-            <article class="relative w-full max-w-sm lg:w-1/3 rounded-[20px] overflow-hidden border border-solid border-gray-300 flex flex-col bg-white shadow-md">
+            <article class="relative w-full max-w-sm lg:w-1/3 rounded-[20px] overflow-hidden border border-solid border-gray-300 flex flex-col bg-white shadow-md order-3 lg:order-1">
                 <header class="w-full bg-[#3483b5] p-4 flex-shrink-0">
                     <h3 class="font-['Inter',Helvetica] font-semibold text-white text-3xl text-center">
                         1 BOTTLE
@@ -126,7 +183,7 @@
                 </div>
             </article>
 
-            <article class="relative w-full max-w-sm lg:w-1/3 bg-[#fafcf0] rounded-[20px] overflow-hidden border-4 border-solid border-green-500 flex flex-col shadow-2xl scale-105 lg:scale-110">
+            <article class="relative w-full max-w-sm lg:w-1/3 bg-[#fafcf0] rounded-[20px] overflow-hidden border-4 border-solid border-green-500 flex flex-col shadow-2xl scale-105 lg:scale-110 order-1 lg:order-2">
                 <header class="w-full bg-green-500 p-4 flex-shrink-0">
                     <h3 class="font-['Inter',Helvetica] font-semibold text-white text-3xl text-center">
                         6 BOTTLE
@@ -170,7 +227,7 @@
                 </div>
             </article>
 
-            <article class="relative w-full max-w-sm  lg:w-1/3 rounded-[20px] overflow-hidden border border-solid border-gray-300 flex flex-col bg-white shadow-md">
+            <article class="relative w-full max-w-sm  lg:w-1/3 rounded-[20px] overflow-hidden border border-solid border-gray-300 flex flex-col bg-white shadow-md order-2 lg:order-3">
                 <header class="w-full bg-[#3483b5] p-4 flex-shrink-0">
                     <h3 class="font-['Inter',Helvetica] font-semibold text-white text-3xl text-center">
                         3 BOTTLE
@@ -226,27 +283,34 @@
     </div>
 </section>
 
-                <section id="guarantee" class="py-16 sm:py-24 [background:linear-gradient(90deg,rgba(53,132,182,1)_0%,rgba(27,95,138,1)_100%)] text-white" aria-labelledby="guarantee-heading">
+                <section id="guarantee" class="py-16 sm:py-24 h-90 [background:linear-gradient(90deg,rgba(53,132,182,1)_0%,rgba(27,95,138,1)_100%)] text-white" aria-labelledby="guarantee-heading">
                     <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-center gap-12">
-                        <div class="flex-shrink-0">
-                            <img class="w-80 h-auto" src="../assets/png/kit-02-garantia.png" alt="Product kit with guarantee seal">
+                    
+                        <div class="flex-shrink-0 relative w-full h-auto md:w-[500px] md:h-[500px] flex items-center justify-center brilho-central overflow-hidden">
+                            
+                            <img class="absolute inset-0 w-full h-full object-contain opacity-75" src="assets/svg/circulos.svg" alt="" style="z-index: 0;">
+
+                            <img class="absolute inset-0 w-full h-full object-contain" src="assets/png/grid.png" alt="" style="z-index: 10; transform: scale(2); left: auto;">
+
+                            <img class="w-80 h-auto relative" src="assets/png/kit-02-garantia.png" alt="Product kit with guarantee seal" style="z-index: 20;">
                         </div>
+                    
                         <div class="text-center md:text-left max-w-xl">
                             <p class="text-xl tracking-widest uppercase">Guarantee</p>
                             <h2 id="guarantee-heading" class="text-3xl md:text-4xl font-semibold leading-tight my-4">
                                 100% Satisfaction 60-Day Money Back Guarantee
                             </h2>
                             <p class="text-lg text-gray-200">
-                                Your order today is covered by our iron-clad 60-day 100% money-back guarantee. If you are not impressed with the results, then at any time in the next 60 days write to us and we'll refund every single cent.
+                                Your order today is covered by our iron-clad 60-day 100% money-back guarantee. If you are not impressed with the results, then at any time in the next 60 days write to us and              we'll refund every single cent.
                             </p>
-                            <button type="button" class="mt-8 inline-flex items-center justify-center gap-3 px-12 py-4 rounded-full font-semibold text-xl bg-gradient-to-r from-green-500 to-green-600 hover:opacity-90 border-b-4 border-green-700">
+                            <button type="button" class="mt-8 inline-flex items-center justify-center gap-3 px-12 py-4 rounded-full font-semibold text-xl bg-gradient-to-r from-green-500 to-green-600              hover:opacity-90 border-b-4 border-green-700">
                                 <img class="w-6 h-6" src="../assets/svg/carrinho-compras.svg" alt="">
                                 ORDER NOW
                             </button>
                         </div>
+                    
                     </div>
                 </section>
-
                 <section id="faq" class="py-16 sm:py-24 bg-white" aria-labelledby="faq-heading">
     <div class="container mx-auto px-4 max-w-4xl flex flex-col items-center gap-12">
         <header class="text-center">
@@ -324,7 +388,7 @@
                     <a href="#shipping" class="text-white text-lg hover:underline">Shipping</a>
                 </nav>
                 <p class="max-w-3xl text-center text-sm text-gray-300">
-                    The information on this website has not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure or prevent any disease...
+                    The information on this website has not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure or prevent any disease. The information on this website has not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure or prevent any disease.The information on this website has not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure or prevent any disease. The information on this website has not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure or prevent any disease.
                 </p>
             </div>
         </footer>
@@ -362,41 +426,97 @@
         })();
     </script>
     <script>
-        // Lógica de Delay e FAQ
+        // Lógica da Página (Delay, FAQ, Botões)
         document.addEventListener("DOMContentLoaded", () => {
+            // --- LÓGICA DO DATA-DELAY ---
+            console.log("1. DOM carregado. Iniciando script da página com fallback...");
+            const FALLBACK_TIMEOUT = 1800;
+            const delayContainer = document.querySelector('[data-delay]');
+            let contentHasBeenShown = false;
+
+            const showContent = () => {
+                if (!contentHasBeenShown && delayContainer) {
+                    console.warn("EXIBINDO CONTEÚDO (seja pelo player ou pelo fallback).");
+                    delayContainer.classList.add('is-visible'); // CORREÇÃO: Usar classe para ativar a animação CSS
+                    contentHasBeenShown = true;
+                }
+            };
+    
+            const fallbackTimer = setTimeout(() => {
+                console.warn(`FALLBACK: O tempo de espera (${FALLBACK_TIMEOUT / 1000}s) esgotou. Forçando a exibição do conteúdo.`);
+                showContent();
+            }, FALLBACK_TIMEOUT);
+    
             const player = document.querySelector("vturb-smartplayer");
+    
             if (player) {
-                const showDelayedContent = (p) => {
+                console.log("2. Elemento do player ENCONTRADO.");
+    
+                const setupPlayerLogic = (p) => {
+                    console.log("4. Configuração do player pronta. Verificando 'pitchTime'...");
+                    console.log("DEBUG: Objeto de dados do player:", p.data); // DEBUG: Inspecione o objeto de dados
                     const pitchTime = p.data?.config?.pitchTime;
-                    if (typeof pitchTime === "number") {
+                    console.log("5. Valor de 'pitchTime':", pitchTime);
+    
+                    if (typeof pitchTime === "number" && pitchTime > 0) {
+                        console.log(`6. 'pitchTime' é válido (${pitchTime}s). O player irá controlar a exibição.`);
+                        clearTimeout(fallbackTimer);
                         p.displayHiddenElements(pitchTime, ["[data-delay]"]);
+                    } else {
+                        console.warn(`AVISO: 'pitchTime' não é um número válido ou não foi encontrado. O fallback de ${FALLBACK_TIMEOUT / 1000}s continua ativo.`);
                     }
                 };
-                player.data?.config ? showDelayedContent(player) : player.addEventListener("player:ready", () => showDelayedContent(player));
+    
+                console.log("3. Aguardando o evento 'player:ready'...");
+                player.addEventListener("player:ready", () => {
+                    console.log("3b. Evento 'player:ready' disparado!");
+                    setupPlayerLogic(player);
+                });
+    
+            } else {
+                console.error("ERRO GRAVE: Elemento do player NÃO FOI ENCONTRADO. Exibindo conteúdo imediatamente como fallback.");
+                clearTimeout(fallbackTimer);
+                showContent();
             }
 
-            document.querySelectorAll('.faq-item').forEach(item => {
-                const question = item.querySelector('.faq-question');
-                if (question) {
-                    question.addEventListener('click', () => {
-                        item.classList.toggle('active');
-                    });
-                }
-            });
-        });
-
-        // ======================================================
-        // NOVO CÓDIGO PARA OS BOTÕES - ADICIONE ISTO
-        // ======================================================
-        const allButtons = document.querySelectorAll('button');
-
-        allButtons.forEach(button => {
-            button.addEventListener('click', (event) => {
-                // Previne qualquer ação padrão do botão (como seguir um link ou enviar um formulário)
-                event.preventDefault();
+            // ---- LÓGICA DO TIMER REGRESSIVO ----
+            const countdownElement = document.getElementById('countdown-timer');
+            if (countdownElement) {
+                let durationInSeconds = 17 * 60 + 38; // 17 minutos e 38 segundos
+            
+                const timerInterval = setInterval(() => {
+                    if (durationInSeconds <= 0) {
+                        clearInterval(timerInterval);
+                        countdownElement.textContent = "00:00";
+                        return;
+                    }
                 
-                // Exibe o alerta
-                alert('Function not yet implemented');
+                    durationInSeconds--;
+                
+                    const minutes = Math.floor(durationInSeconds / 60);
+                    const seconds = durationInSeconds % 60;
+                
+                    countdownElement.textContent = 
+                        `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                
+                }, 1000);
+            }
+
+            // --- LÓGICA DO FAQ ---
+            document.querySelectorAll('.faq-question').forEach(button => {
+                button.addEventListener('click', () => {
+                    const faqItem = button.closest('.faq-item');
+                    faqItem.classList.toggle('active');
+                });
+            });
+
+            // --- LÓGICA DOS BOTÕES ---
+            document.querySelectorAll('button').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    if (button.closest('vturb-smartplayer')) return;
+                    event.preventDefault();
+                    alert('Function not yet implemented');
+                });
             });
         });
     </script>
