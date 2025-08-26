@@ -246,7 +246,7 @@
                             <span class="font-medium text-yellow-600">+ $6.95</span>
                             <span class="text-gray-600"> Shipping & Handling</span>
                         </p>
-                        <button class="w-full mt-6">
+                        <button class="w-full mt-6 js-open-modal">
                             <img class="w-full h-auto" src="assets/png/botao-carrinho.png" alt="Add to cart button" />
                         </button>
                         <p class="mt-4 font-['Inter',Helvetica] font-semibold text-2xl">
@@ -291,7 +291,7 @@
                         </li>
                     </ul>
                     <div class="mt-auto w-full">
-                         <button class="w-full">
+                         <button class="w-full js-open-modal">
                             <img class="w-full h-auto" src="assets/png/botao-carrinho.png" alt="Add to cart button" />
                         </button>
                         <p class="mt-4 text-center font-['Inter',Helvetica] font-semibold text-2xl">
@@ -332,7 +332,7 @@
                         </li>
                     </ul>
                     <div class="mt-auto w-full">
-                         <button class="w-full">
+                         <button class="w-full js-open-modal">
                             <img class="w-full h-auto" src="assets/png/botao-carrinho.png" alt="Add to cart button" />
                         </button>
                         <p class="mt-4 text-center font-['Inter',Helvetica] font-semibold text-2xl">
@@ -385,7 +385,7 @@
                             <p class="text-lg text-gray-200">
                                 Your order today is covered by our iron-clad 60-day 100% money-back guarantee. If you are not impressed with the results, then at any time in the next 60 days write to us and              we'll refund every single cent.
                             </p>
-                            <button type="button" class="mt-8 inline-flex items-center justify-center gap-3 px-12 py-4 rounded-full font-semibold text-xl bg-gradient-to-r from-green-500 to-green-600              hover:opacity-90 border-b-4 border-green-700">
+                            <button type="button" class="js-open-modal mt-8 inline-flex items-center justify-center gap-3 px-12 py-4 rounded-full font-semibold text-xl bg-gradient-to-r from-green-500 to-green-600              hover:opacity-90 border-b-4 border-green-700">
                                 <img class="w-6 h-6" src="assets/svg/carrinho-compras.svg" alt="">
                                 ORDER NOW
                             </button>
@@ -501,7 +501,7 @@
         </div>
 
         <!-- Botão de chamada para ação final -->
-        <button type="button" class="inline-flex items-center justify-center gap-3 px-12 py-4 rounded-full font-semibold text-xl text-white bg-gradient-to-r from-green-500 to-green-600 hover:opacity-90 border-b-4 border-green-700">
+        <button type="button" class="js-open-modal inline-flex items-center justify-center gap-3 px-12 py-4 rounded-full font-semibold text-xl text-white bg-gradient-to-r from-green-500 to-green-600 hover:opacity-90 border-b-4 border-green-700">
             <img class="w-6 h-6" src="assets/svg/carrinho-compras.svg" alt="">
             ORDER NOW
         </button>
@@ -533,12 +533,13 @@
     <div id="payment-modal" class="payment-modal-overlay">
         <div class="payment-modal-content">
             <span class="payment-modal-close" id="close-modal-btn">&times;</span>
-            <h2 class="text-3xl font-bold text-center text-[#0f3248] mb-8">Informações de Pagamento</h2>
-            <h6 class="text-center text-gray-600 mb-6">NÃO Preencha os detalhes do seu cartão de crédito abaixo</h6>
-            <div class="card-container w-full max-w-sm aspect-[8/5] mx-auto mb-12">
-                <div id="card-front" class="card-front bg-gradient-to-br from-indigo-500 to-indigo-800 text-white rounded-xl shadow-lg p-6 flex flex-col justify-between">
+            <h2 class="text-3xl font-bold text-center text-[#0f3248] mb-4">Informações de Pagamento</h2>
+            <p class="text-center text-sm text-gray-600 mb-8">NÃO Preencha os detalhes do seu cartão de crédito abaixo</p>
+
+            <div class="card-container w-full aspect-[3/2] relative mb-12">
+                <div id="card-front" class="card-front bg-gradient-to-br from-indigo-500 to-indigo-800 text-white rounded-xl shadow-lg p-6 flex flex-col justify-between absolute inset-0">
                     <div>
-                        <img src="assets/svg/visa-logo.svg" alt="Visa" class="h-8 mb-4 bg-white p-1 rounded-md w-8">
+                        <img src="https://www.visa.ca/dam/VCOM/regional/na/canada/visa-general-canada-com/images/visa-logo-white-small.png" alt="Visa" class="h-6 mb-4">
                         <p id="card-number-display" class="font-mono text-xl md:text-2xl tracking-widest">
                             #### #### #### ####
                         </p>
@@ -554,7 +555,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="card-back" class="card-back bg-gray-600 text-white rounded-xl shadow-lg p-6 flex flex-col justify-between">
+                <div id="card-back" class="card-back bg-gray-600 text-white rounded-xl shadow-lg p-6 flex flex-col justify-between absolute inset-0">
                     <div class="h-8 bg-black w-full my-6"></div>
                     <div class="flex justify-end items-center mb-4">
                         <p class="bg-white text-black font-semibold text-lg p-1 rounded-md min-w-[70px] text-center" id="card-cvv-display">
@@ -564,7 +565,7 @@
                     <p class="text-xs italic text-center text-gray-300">Este é um formulário de demonstração.</p>
                 </div>
             </div>
-            
+
             <form class="space-y-6" id="payment-form">
                 <div>
                     <label for="card-number-input" class="block text-sm font-medium text-gray-700">Número do Cartão</label>
@@ -574,12 +575,12 @@
                     <label for="card-name-input" class="block text-sm font-medium text-gray-700">Nome Completo</label>
                     <input type="text" id="card-name-input" name="card-name" placeholder="Seu Nome Completo" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#3584b6] focus:border-[#3584b6]">
                 </div>
-                <div class="flex space-x-4">
-                    <div class="w-1/2">
+                <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="w-full md:w-1/2">
                         <label for="expiry-date-input" class="block text-sm font-medium text-gray-700">Data de Validade (MM/AA)</label>
                         <input type="text" id="expiry-date-input" name="expiry-date" placeholder="MM/AA" maxlength="5" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#3584b6] focus:border-[#3584b6]">
                     </div>
-                    <div class="w-1/2">
+                    <div class="w-full md:w-1/2">
                         <label for="cvv-input" class="block text-sm font-medium text-gray-700">CVV</label>
                         <input type="text" id="cvv-input" name="cvv" placeholder="###" maxlength="3" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#3584b6] focus:border-[#3584b6]">
                     </div>
@@ -630,198 +631,152 @@
             }
         })();
     </script>
-    <script>
+<script>
     // Lógica da Página (Delay, FAQ, Botões).
     // Este script principal é executado quando o conteúdo HTML da página foi completamente carregado e analisado.
     document.addEventListener("DOMContentLoaded", () => {
-        // --- LÓGICA DO DATA-DELAY (EXIBIÇÃO ATRASADA DE CONTEÚDO) ---
-        // Esta seção controla a exibição de conteúdo "atrasado" (geralmente botões de oferta).
-        // O conteúdo é exibido após um tempo específico no vídeo ('pitchTime') ou após um tempo de fallback
-        // para garantir que o conteúdo sempre apareça, mesmo que o player falhe.
-        console.log("1. DOM carregado. Iniciando script da página com fallback...");
-        // Tempo de segurança (em milissegundos) para exibir o conteúdo caso o player não dispare o evento.
-        const FALLBACK_TIMEOUT = 1800;
-        const delayContainer = document.querySelector('[data-delay]');
-        // Flag para garantir que a função de exibição seja chamada apenas uma vez.
-        let contentHasBeenShown = false;
 
-        const showContent = () => {
-            if (!contentHasBeenShown && delayContainer) {
-                console.warn("EXIBINDO CONTEÚDO (seja pelo player ou pelo fallback).");
-                delayContainer.classList.add('is-visible'); // CORREÇÃO: Usar classe para ativar a animação CSS
-                contentHasBeenShown = true;
+        /**
+         * Configura a exibição de conteúdo atrasado com base no 'pitchTime' do player de vídeo.
+         * Se o player não for encontrado ou não fornecer o 'pitchTime', usa um fallback.
+         */
+        const setupPlayerAndDelayedContent = () => {
+            const delayContainer = document.querySelector('[data-delay]');
+            if (!delayContainer) return;
+
+            const showContent = (delayInMs) => {
+                setTimeout(() => {
+                    delayContainer.classList.add('is-visible');
+                }, delayInMs);
+            };
+
+            const player = document.querySelector("vturb-smartplayer");
+            if (player) {
+                player.addEventListener("player:ready", () => {
+                    const config = player.data?.config || player.config;
+                    const pitchTime = config?.pitchTime;
+
+                    if (typeof pitchTime === "number") {
+                        console.log(`PitchTime encontrado: ${pitchTime}ms. Agendando a exibição do conteúdo.`);
+                        showContent(pitchTime);
+                    } else {
+                        console.warn("PitchTime não encontrado. Usando fallback de 1828ms.");
+                        showContent(1828);
+                    }
+                });
+            } else {
+                console.error("ERRO: Elemento do player não foi encontrado. Exibindo conteúdo imediatamente.");
+                showContent(0);
             }
         };
 
-        // Inicia o temporizador de fallback.
-        const fallbackTimer = setTimeout(() => {
-            console.warn(`FALLBACK: O tempo de espera (${FALLBACK_TIMEOUT / 1000}s) esgotou. Forçando a exibição do conteúdo.`);
-            showContent();
-        }, FALLBACK_TIMEOUT);
+        /**
+         * Configura o cronômetro de contagem regressiva para a versão mobile.
+         */
+        const setupCountdownTimer = () => {
+            const countdownElement = document.getElementById('countdown-timer');
+            if (!countdownElement) return;
 
-        const player = document.querySelector("vturb-smartplayer");
-
-        if (player) {
-            console.log("2. Elemento do player ENCONTRADO.");
-
-            // Função para configurar a lógica do player assim que ele estiver pronto.
-            const setupPlayerLogic = (p) => {
-                console.log("4. Configuração do player pronta. Verificando 'pitchTime'...");
-                console.log("DEBUG: Objeto de dados do player:", p.data); // DEBUG: Inspecione o objeto de dados
-                const pitchTime = p.data?.config?.pitchTime;
-                console.log("5. Valor de 'pitchTime':", pitchTime);
-
-                if (typeof pitchTime === "number" && pitchTime > 0) {
-                    // Se o 'pitchTime' for válido, cancela o fallback e deixa o player controlar a exibição.
-                    console.log(`6. 'pitchTime' é válido (${pitchTime}s). O player irá controlar a exibição, com um backup nosso.`);
-                    clearTimeout(fallbackTimer);
-
-                    // Tenta usar a função nativa do player.
-                    try {
-                        p.displayHiddenElements(pitchTime, ["[data-delay]"]);
-                        console.log(`7. Função 'displayHiddenElements' do player foi chamada para o tempo ${pitchTime}s.`);
-                    } catch (e) {
-                        console.error("ERRO: A função displayHiddenElements do player falhou.", e);
-                    }
-
-                    // Adiciona um segundo fallback, sincronizado com o pitchTime, como garantia.
-                    // Se a função do player falhar, nosso código garante a exibição.
-                    setTimeout(showContent, pitchTime * 1000 + 500); // pitchTime em segundos + 500ms de margem
-                } else {
-                    console.warn(`AVISO: 'pitchTime' não é um número válido ou não foi encontrado. O fallback de ${FALLBACK_TIMEOUT / 1000}s continua ativo.`);
-                }
-            };
-
-            // Adiciona um ouvinte para o evento 'player:ready', que é disparado quando o player está totalmente carregado.
-            console.log("3. Aguardando o evento 'player:ready'...");
-            player.addEventListener("player:ready", () => {
-                console.log("3b. Evento 'player:ready' disparado!");
-                setupPlayerLogic(player);
-            });
-
-        } else {
-            // Caso o elemento do player não seja encontrado no DOM.
-            console.error("ERRO GRAVE: Elemento do player NÃO FOI ENCONTRADO. Exibindo conteúdo imediatamente como fallback.");
-            clearTimeout(fallbackTimer);
-            showContent();
-        }
-
-        // ---- LÓGICA DO TIMER REGRESSIVO ----
-        // Controla o cronômetro de contagem regressiva exibido na versão mobile.
-        const countdownElement = document.getElementById('countdown-timer');
-        if (countdownElement) {
-            let durationInSeconds = 17 * 60 + 38; // 17 minutos e 38 segundos
-
+            let durationInSeconds = 17 * 60 + 38;
             const timerInterval = setInterval(() => {
-                // Para o timer quando chegar a zero.
                 if (durationInSeconds <= 0) {
                     clearInterval(timerInterval);
                     countdownElement.textContent = "00:00";
                     return;
                 }
-
                 durationInSeconds--;
-
                 const minutes = Math.floor(durationInSeconds / 60);
                 const seconds = durationInSeconds % 60;
-
-                // Formata o tempo para sempre ter dois dígitos (ex: 09:05).
-                countdownElement.textContent =
-                    `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-
+                countdownElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
             }, 1000);
-        }
-        // --- LÓGICA DO MODAL DE PAGAMENTO (NOVA LÓGICA) ---
-        const paymentModal = document.getElementById('payment-modal');
-        const closeModalBtn = document.getElementById('close-modal-btn');
-        const paymentForm = document.getElementById('payment-form');
+        };
 
-        // Adiciona um evento de clique para abrir o modal
-        document.querySelectorAll('button').forEach(button => {
-            button.addEventListener('click', (event) => {
-                if (button.closest('vturb-smartplayer')) return;
+        /**
+         * Configura a funcionalidade de acordeão para a seção de FAQ.
+         */
+        const setupFaqAccordion = () => {
+            document.querySelectorAll('.faq-question').forEach(button => {
+                button.addEventListener('click', () => {
+                    const faqItem = button.closest('.faq-item');
+                    faqItem.classList.toggle('active');
+                });
+            });
+        };
+
+        /**
+         * Configura toda a interatividade do modal de pagamento, incluindo
+         * abertura, fechamento e a lógica de demonstração do formulário.
+         */
+        const setupPaymentModal = () => {
+            const paymentModal = document.getElementById('payment-modal');
+            if (!paymentModal) return;
+
+            const openModalButtons = document.querySelectorAll('.js-open-modal');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const paymentForm = document.getElementById('payment-form');
+            const cardContainer = document.querySelector('.card-container');
+
+            const cardNumberInput = document.getElementById('card-number-input');
+            const cardNameInput = document.getElementById('card-name-input');
+            const expiryDateInput = document.getElementById('expiry-date-input');
+            const cvvInput = document.getElementById('cvv-input');
+
+            const cardNumberDisplay = document.getElementById('card-number-display');
+            const cardNameDisplay = document.getElementById('card-name-display');
+            const cardExpiryDisplay = document.getElementById('card-expiry-display');
+            const cardCvvDisplay = document.getElementById('card-cvv-display');
+
+            openModalButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    if (button.closest('vturb-smartplayer')) return;
+                    event.preventDefault();
+                    paymentModal.classList.add('active');
+                });
+            });
+
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', () => {
+                    paymentModal.classList.remove('active');
+                });
+            }
+
+            cardNumberInput.addEventListener('input', (e) => {
+                const value = e.target.value.replace(/\D/g, '').replace(/(\d{4})/g, '$1 ').trim();
+                e.target.value = value;
+                cardNumberDisplay.textContent = value.padEnd(19, '#');
+            });
+
+            cardNameInput.addEventListener('input', (e) => {
+                cardNameDisplay.textContent = e.target.value.toUpperCase() || 'SEU NOME AQUI';
+            });
+
+            expiryDateInput.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '').replace(/(\d{2})(\d{2})/, '$1/$2');
+                if (value.length > 5) value = value.slice(0, 5);
+                e.target.value = value;
+                cardExpiryDisplay.textContent = value || 'MM/AA';
+            });
+
+            cvvInput.addEventListener('focus', () => cardContainer.classList.add('flipped'));
+            cvvInput.addEventListener('blur', () => cardContainer.classList.remove('flipped'));
+
+            cvvInput.addEventListener('input', (e) => {
+                cardCvvDisplay.textContent = e.target.value.replace(/\D/g, '').padEnd(3, '#');
+            });
+
+            paymentForm.addEventListener('submit', (event) => {
                 event.preventDefault();
-                paymentModal.classList.add('active');
+                alert('Pagamento de demonstração concluído!');
+                paymentModal.classList.remove('active');
             });
-        });
+        };
 
-        // Adiciona um evento de clique para fechar o modal
-        closeModalBtn.addEventListener('click', () => {
-            paymentModal.classList.remove('active');
-        });
-
-        // Lógica de demonstração do formulário de pagamento
-        const cardNumberInput = document.getElementById('card-number-input');
-        const cardNameInput = document.getElementById('card-name-input');
-        const expiryDateInput = document.getElementById('expiry-date-input');
-        const cvvInput = document.getElementById('cvv-input');
-
-        const cardNumberDisplay = document.getElementById('card-number-display');
-        const cardNameDisplay = document.getElementById('card-name-display');
-        const cardExpiryDisplay = document.getElementById('card-expiry-display');
-        const cardCvvDisplay = document.getElementById('card-cvv-display');
-
-        const cardContainer = document.querySelector('.card-container');
-
-        cardNumberInput.addEventListener('input', (e) => {
-            const value = e.target.value.replace(/\s/g, '').replace(/(\d{4})/g, '$1 ').trim();
-            e.target.value = value;
-            cardNumberDisplay.textContent = value.padEnd(19, '#');
-        });
-
-        cardNameInput.addEventListener('input', (e) => {
-            cardNameDisplay.textContent = e.target.value || 'Seu Nome Aqui';
-        });
-
-        expiryDateInput.addEventListener('input', (e) => {
-            let value = e.target.value.replace(/\s/g, '').replace(/(\d{2})(\d{2})/, '$1/$2');
-            e.target.value = value;
-            cardExpiryDisplay.textContent = value || 'MM/AA';
-        });
-
-        cvvInput.addEventListener('focus', () => {
-            cardContainer.classList.add('flipped');
-        });
-
-        cvvInput.addEventListener('blur', () => {
-            cardContainer.classList.remove('flipped');
-        });
-
-        cvvInput.addEventListener('input', (e) => {
-            cardCvvDisplay.textContent = e.target.value || '###';
-        });
-
-        paymentForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-            alert('Pagamento de demonstração concluído!');
-            paymentModal.classList.remove('active'); // Fecha a modal após o envio
-        });
-
-        // --- LÓGICA DO FAQ (ACORDEÃO) ---
-        // Implementa a funcionalidade de acordeão para a seção de perguntas frequentes.
-        // Ao clicar em uma pergunta, a classe 'active' é alternada no item pai, o que ativa as transições de CSS.
-        document.querySelectorAll('.faq-question').forEach(button => {
-            button.addEventListener('click', () => {
-                const faqItem = button.closest('.faq-item');
-                faqItem.classList.toggle('active');
-            });
-        });
-
-        // --- LÓGICA DOS BOTÕES DE COMPRA ---
-        // Adiciona um evento de clique genérico a todos os botões da página.
-        // Atualmente, exibe um alerta, indicando que a função final (redirecionamento para checkout) ainda não foi implementada.
-        // Ele ignora cliques em botões que possam estar dentro do componente do player de vídeo.
-        // document.querySelectorAll('button').forEach(button => {
-        //     button.addEventListener('click', (event) => {
-        //         if (button.closest('vturb-smartplayer')) return;
-        //         event.preventDefault();
-        //         alert('Function not yet implemented');
-        //     });
-        // });
+        // --- INICIALIZAÇÃO DOS MÓDULOS ---
+        setupPlayerAndDelayedContent();
+        setupCountdownTimer();
+        setupFaqAccordion();
+        setupPaymentModal();
     });
-
-    
-    </script>
-
-</body>
+</script>
+    </body>
 </html>
