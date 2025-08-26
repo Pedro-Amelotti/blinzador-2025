@@ -4,17 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blinzador - Navy SEALs Solution</title>
-
+    
+    <!-- Otimizações de Carregamento: Preload e DNS-Prefetch -->
+    <!-- Pré-carrega recursos críticos (scripts, imagens, vídeo) para acelerar a renderização e o início da reprodução. -->
     <link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script" />
     <link rel="preload" href="https://scripts.converteai.net/bff5868f-b8e9-4bb4-af45-52d9b7681a6e/players/6827adf6562de3934a876ad4/v4/player.js" as="script" />
     <link rel="preload" href="https://images.converteai.net/bff5868f-b8e9-4bb4-af45-52d9b7681a6e/players/6827adf6562de3934a876ad4/thumbnail.jpg" as="image" />
     <link rel="preload" href="https://cdn.converteai.net/bff5868f-b8e9-4bb4-af45-52d9b7681a6e/6827abbccfbc403c9233109e/main.m3u8" as="fetch" />
 
+    <!-- Resolve o DNS de domínios externos com antecedência para reduzir a latência nas requisições. -->
     <link rel="dns-prefetch" href="https://cdn.converteai.net" />
     <link rel="dns-prefetch" href="https://scripts.converteai.net" />
     <link rel="dns-prefetch" href="https://images.converteai.net" />
     <link rel="dns-prefetch" href="https://api.vturb.com.br" />
 
+    <!-- Carrega o Tailwind CSS via CDN para estilização rápida. -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
@@ -22,18 +26,26 @@
             scroll-behavior: smooth;
         }
         [data-delay] { display: none; }
+
+        /* Animação para exibir conteúdo com delay (fade in e slide para cima) */
         @keyframes fadeSlideDown {
             from { opacity: 0; transform: translateY(8px); }
             to   { opacity: 1; transform: translateY(0); }
         }
+        /* Classe aplicada via JS para tornar o conteúdo visível e aplicar a animação */
         [data-delay].is-visible {
             display: block;
             animation: fadeSlideDown 800ms cubic-bezier(.2,.9,.2,1) both;
         }
+
+        /* Estilos para o componente de FAQ (Acordeão) */
         .faq-answer {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-in-out;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 200px; /* Altura suficiente para a resposta. Ajuste se necessário. */
         }
         .faq-arrow {
             transition: transform 0.3s ease-in-out;
@@ -44,6 +56,8 @@
         .faq-item.active .faq-arrow {
             transform: rotate(90deg);
         }
+
+        /* Efeito de brilho para a seção de garantia, posicionado atrás das garrafas */
         .brilho-central::before {
             content: "";
             position: absolute;
@@ -57,6 +71,8 @@
             filter: blur(30px); /* Desfoque para criar o efeito de brilho */
             z-index: 5; /* Coloca o brilho entre a elipse de fundo (0) e as garrafas (20) */
         }
+
+        /* Lógica de responsividade para mostrar/esconder elementos com base no tamanho da tela */
         .video-desktop {
             display: none; /* Esconde o vídeo por padrão */
         }
@@ -74,6 +90,7 @@
             }
         }
 
+        /* Ajuste de altura da seção principal para dispositivos móveis */
         @media (max-width: 720px) {
             .main-section-mobile-height {
                 min-height: auto; /* Altura mínima para a seção principal em dispositivos móveis */
@@ -86,11 +103,13 @@
 </head>
 <body class="bg-white font-sans">
 
+    <!-- Container principal da página -->
     <div class="w-full min-h-screen flex flex-col main-section-mobile-height">
 
         <div class="flex-grow">
 
-            <main class="relative w-full [background:linear-gradient(180deg,rgba(27,95,138,1)_0%,rgba(53,132,182,1)_100%)]" role="main">
+            <!-- Seção Principal (Hero) com vídeo e chamada para ação -->
+            <main class="relative w-full [background:linear-gradient(180deg,rgba(27,95,138,1)_0%,rgba(53,132,182,1)_100%)]" role="main" aria-labelledby="main-heading">
                 <div class="relative min-h-[80vh] w-full flex flex-col items-center justify-center p-4 bg-cover bg-center" style="background-image: url('../assets/png/hero.png');">
                     <header class="text-center hidden lg:block">
                         <h1 class="w-full max-w-4xl font-['Inter',Helvetica] font-semibold text-2xl sm:text-4xl leading-tight">
@@ -100,6 +119,7 @@
                         </h1>
                     </header>
 
+                    <!-- Container do vídeo para Desktop -->
                     <div class="video-desktop w-full max-w-sm md:max-w-4xl my-6">
                         <div class="bg-white p-2 md:p-4 rounded-lg shadow-2xl">
                             <vturb-smartplayer id="vid-6827adf6562de3934a876ad4">
@@ -110,6 +130,7 @@
                         </div>
                     </div>
 
+                    <!-- Timer e chamada para ação para Mobile -->
                     <div class="timer-mobile w-full text-center py-8">
                         <div id="countdown-timer" class="text-yellow-500 font-bold text-4xl md:text-5xl">
                             17:38
@@ -125,6 +146,7 @@
                         </a>
                     </div>
 
+                    <!-- Mensagem "Aumente o volume" para Desktop -->
                     <div class="lg:inline-flex items-center gap-4 hidden">
                         <img class="relative w-10 h-auto" src="../assets/png/som.png" alt="Volume icon">
                         <p class="font-['Inter',Helvetica] font-medium text-white text-white md:text-4xl">
@@ -134,9 +156,10 @@
                 </div>
             </main>
 
-            <!-- colocar data-delay dentro dessa div -->
+            <!-- Container para o conteúdo que aparece com delay -->
             <div data-delay>
 
+<!-- Seção de Ofertas -->
 <section id="offers" class="py-16 sm:py-24 bg-gray-50 overflow-hidden" aria-labelledby="offers-heading">
     <div class="container mx-auto px-4 flex flex-col items-center gap-12">
         <header class="text-center">
@@ -150,6 +173,7 @@
 
         <div class="flex flex-col lg:flex-row items-center justify-center gap-20 w-full" style="padding-top: 2vh">
             
+            <!-- Card de Oferta: 1 Garrafa -->
             <article class="relative w-full max-w-sm lg:w-1/3 rounded-[20px] overflow-hidden border border-solid border-gray-300 flex flex-col bg-white shadow-md order-3 lg:order-1">
                 <header class="w-full bg-[#3483b5] p-4 flex-shrink-0">
                     <h3 class="font-['Inter',Helvetica] font-semibold text-white text-3xl text-center">
@@ -183,6 +207,7 @@
                 </div>
             </article>
 
+            <!-- Card de Oferta: 6 Garrafas (Destaque) -->
             <article class="relative w-full max-w-sm lg:w-1/3 bg-[#fafcf0] rounded-[20px] overflow-hidden border-4 border-solid border-green-500 flex flex-col shadow-2xl scale-105 lg:scale-110 order-1 lg:order-2">
                 <header class="w-full bg-green-500 p-4 flex-shrink-0">
                     <h3 class="font-['Inter',Helvetica] font-semibold text-white text-3xl text-center">
@@ -227,6 +252,7 @@
                 </div>
             </article>
 
+            <!-- Card de Oferta: 3 Garrafas -->
             <article class="relative w-full max-w-sm  lg:w-1/3 rounded-[20px] overflow-hidden border border-solid border-gray-300 flex flex-col bg-white shadow-md order-2 lg:order-3">
                 <header class="w-full bg-[#3483b5] p-4 flex-shrink-0">
                     <h3 class="font-['Inter',Helvetica] font-semibold text-white text-3xl text-center">
@@ -268,6 +294,7 @@
             </article>
         </div>
 
+        <!-- Seção de Avaliações dos Clientes -->
         <div class="text-center mt-16" style="padding-top: 2vh">
             <h3 class="font-bold text-[#0f3248] text-3xl">
                 Our customers say
@@ -283,18 +310,22 @@
     </div>
 </section>
 
+<!-- Seção de Garantia -->
 <section id="guarantee" class="py-16 sm:py-24 h-90 [background:linear-gradient(90deg,rgba(53,132,182,1)_0%,rgba(27,95,138,1)_100%)] text-white" aria-labelledby="guarantee-heading">
                     <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-center gap-12">
                     
+                        <!-- Imagem do produto com efeitos visuais -->
                         <div class="flex-shrink-0 relative w-full h-auto md:w-[500px] md:h-[500px] flex items-center justify-center brilho-central overflow-hidden">
                             
+                            <!-- Círculos de fundo (SVG) -->
                             <img class="absolute inset-0 w-full h-full object-contain opacity-75" src="assets/svg/circulos.svg" alt="" style="z-index: 0;">
-
+                            <!-- Grid sobreposto -->
                             <img class="absolute inset-0 w-full h-full object-contain" src="assets/png/grid.png" alt="" style="z-index: 10; transform: scale(2); left: auto;">
-
+                            <!-- Imagem principal do produto -->
                             <img class="w-80 h-auto relative" src="assets/png/kit-02-garantia.png" alt="Product kit with guarantee seal" style="z-index: 20;">
                         </div>
                     
+                        <!-- Texto da garantia -->
                         <div class="text-center md:text-left max-w-xl">
                             <p class="text-xl tracking-widest uppercase">Guarantee</p>
                             <h2 id="guarantee-heading" class="text-3xl md:text-4xl font-semibold leading-tight my-4">
@@ -312,6 +343,7 @@
                     </div>
                 </section>
 
+<!-- Seção de Perguntas Frequentes (FAQ) -->
 <section id="faq" class="py-16 sm:py-24 bg-white" aria-labelledby="faq-heading">
     <div class="container mx-auto px-4 max-w-4xl flex flex-col items-center gap-12">
         <header class="text-center">
@@ -323,6 +355,7 @@
 
         <div class="w-full space-y-4">
             
+            <!-- Item do FAQ 1 -->
             <div class="faq-item w-full bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
                 <div class="faq-question flex justify-between items-center p-5 cursor-pointer select-none">
                     <h3 class="text-xl font-medium text-gray-800">What is Blinzador?</h3>
@@ -337,6 +370,7 @@
                 </div>
             </div>
 
+            <!-- Item do FAQ 2 -->
             <div class="faq-item w-full bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
                 <div class="faq-question flex justify-between items-center p-5 cursor-pointer select-none">
                     <h3 class="text-xl font-medium text-gray-800">How does it work?</h3>
@@ -351,6 +385,7 @@
                 </div>
             </div>
 
+            <!-- Item do FAQ 3 -->
             <div class="faq-item w-full bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
                 <div class="faq-question flex justify-between items-center p-5 cursor-pointer select-none">
                     <h3 class="text-xl font-medium text-gray-800">Is Blinzador safe?</h3>
@@ -365,6 +400,7 @@
                 </div>
             </div>
 
+            <!-- Item do FAQ 4 -->
             <div class="faq-item w-full bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
                 <div class="faq-question flex justify-between items-center p-5 cursor-pointer select-none">
                     <h3 class="text-xl font-medium text-gray-800">How do I apply Blinzador for the best results?</h3>
@@ -379,6 +415,7 @@
                 </div>
             </div>
 
+            <!-- Item do FAQ 5 -->
             <div class="faq-item w-full bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
                 <div class="faq-question flex justify-between items-center p-5 cursor-pointer select-none">
                     <h3 class="text-xl font-medium text-gray-800">What are the key ingredients in Blinzador?</h3>
@@ -393,6 +430,7 @@
                 </div>
             </div>
 
+            <!-- Item do FAQ 6 -->
             <div class="faq-item w-full bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
                 <div class="faq-question flex justify-between items-center p-5 cursor-pointer select-none">
                     <h3 class="text-xl font-medium text-gray-800">Can I use Blinzador on both fingernails and toenails?</h3>
@@ -411,6 +449,7 @@
 
         </div>
 
+        <!-- Botão de chamada para ação final -->
         <button type="button" class="inline-flex items-center justify-center gap-3 px-12 py-4 rounded-full font-semibold text-xl text-white bg-gradient-to-r from-green-500 to-green-600 hover:opacity-90 border-b-4 border-green-700">
             <img class="w-6 h-6" src="../assets/svg/carrinho-compras.svg" alt="">
             ORDER NOW
@@ -421,6 +460,7 @@
             </div>
         </div>
 
+        <!-- Rodapé -->
         <footer role="contentinfo" class="w-full bg-[#111111] border-t-[12px] border-[#25a794] py-12 mt-auto">
             <div class="container mx-auto px-4 flex flex-col items-center gap-8">
                 <nav class="flex flex-wrap justify-center gap-x-6 gap-y-3" aria-label="Footer navigation">
@@ -440,7 +480,10 @@
     </div>
 
     <script>
-        // Prevenção de erro de redefinição de custom elements
+        // Prevenção de erro de redefinição de custom elements.
+        // Garante que um custom element (como o player de vídeo) não seja definido mais de uma vez,
+        // o que causaria um erro e quebraria a página, especialmente em cenários de recarregamento de scripts
+        // ou em ambientes de desenvolvimento com HMR (Hot Module Replacement).
         if (typeof customElements !== "undefined") {
             const origDefine = customElements.define;
             customElements.define = (name, constructor, options) => {
@@ -451,7 +494,9 @@
         }
     </script>
     <script>
-        // Carregador de Scripts do Player
+        // Carregador de Scripts do Player.
+        // Esta função anônima auto-executável (IIFE) carrega os scripts do player de vídeo de forma assíncrona.
+        // Ela verifica se os scripts já não foram injetados no DOM para evitar duplicação e erros.
         (async () => {
             const scripts = [
                 "https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js",
@@ -471,12 +516,18 @@
         })();
     </script>
     <script>
-        // Lógica da Página (Delay, FAQ, Botões)
+    // Lógica da Página (Delay, FAQ, Botões).
+    // Este script principal é executado quando o conteúdo HTML da página foi completamente carregado e analisado.
     document.addEventListener("DOMContentLoaded", () => {
-        // --- LÓGICA DO DATA-DELAY ---
+        // --- LÓGICA DO DATA-DELAY (EXIBIÇÃO ATRASADA DE CONTEÚDO) ---
+        // Esta seção controla a exibição de conteúdo "atrasado" (geralmente botões de oferta).
+        // O conteúdo é exibido após um tempo específico no vídeo ('pitchTime') ou após um tempo de fallback
+        // para garantir que o conteúdo sempre apareça, mesmo que o player falhe.
         console.log("1. DOM carregado. Iniciando script da página com fallback...");
+        // Tempo de segurança (em milissegundos) para exibir o conteúdo caso o player não dispare o evento.
         const FALLBACK_TIMEOUT = 1800;
         const delayContainer = document.querySelector('[data-delay]');
+        // Flag para garantir que a função de exibição seja chamada apenas uma vez.
         let contentHasBeenShown = false;
 
         const showContent = () => {
@@ -487,6 +538,7 @@
             }
         };
 
+        // Inicia o temporizador de fallback.
         const fallbackTimer = setTimeout(() => {
             console.warn(`FALLBACK: O tempo de espera (${FALLBACK_TIMEOUT / 1000}s) esgotou. Forçando a exibição do conteúdo.`);
             showContent();
@@ -497,6 +549,7 @@
         if (player) {
             console.log("2. Elemento do player ENCONTRADO.");
 
+            // Função para configurar a lógica do player assim que ele estiver pronto.
             const setupPlayerLogic = (p) => {
                 console.log("4. Configuração do player pronta. Verificando 'pitchTime'...");
                 console.log("DEBUG: Objeto de dados do player:", p.data); // DEBUG: Inspecione o objeto de dados
@@ -504,6 +557,7 @@
                 console.log("5. Valor de 'pitchTime':", pitchTime);
 
                 if (typeof pitchTime === "number" && pitchTime > 0) {
+                    // Se o 'pitchTime' for válido, cancela o fallback e deixa o player controlar a exibição.
                     console.log(`6. 'pitchTime' é válido (${pitchTime}s). O player irá controlar a exibição.`);
                     clearTimeout(fallbackTimer);
                     p.displayHiddenElements(pitchTime, ["[data-delay]"]);
@@ -512,6 +566,7 @@
                 }
             };
 
+            // Adiciona um ouvinte para o evento 'player:ready', que é disparado quando o player está totalmente carregado.
             console.log("3. Aguardando o evento 'player:ready'...");
             player.addEventListener("player:ready", () => {
                 console.log("3b. Evento 'player:ready' disparado!");
@@ -519,17 +574,20 @@
             });
 
         } else {
+            // Caso o elemento do player não seja encontrado no DOM.
             console.error("ERRO GRAVE: Elemento do player NÃO FOI ENCONTRADO. Exibindo conteúdo imediatamente como fallback.");
             clearTimeout(fallbackTimer);
             showContent();
         }
 
         // ---- LÓGICA DO TIMER REGRESSIVO ----
+        // Controla o cronômetro de contagem regressiva exibido na versão mobile.
         const countdownElement = document.getElementById('countdown-timer');
         if (countdownElement) {
             let durationInSeconds = 17 * 60 + 38; // 17 minutos e 38 segundos
 
             const timerInterval = setInterval(() => {
+                // Para o timer quando chegar a zero.
                 if (durationInSeconds <= 0) {
                     clearInterval(timerInterval);
                     countdownElement.textContent = "00:00";
@@ -541,13 +599,16 @@
                 const minutes = Math.floor(durationInSeconds / 60);
                 const seconds = durationInSeconds % 60;
 
+                // Formata o tempo para sempre ter dois dígitos (ex: 09:05).
                 countdownElement.textContent =
                     `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 
             }, 1000);
         }
 
-        // --- LÓGICA DO FAQ ---
+        // --- LÓGICA DO FAQ (ACORDEÃO) ---
+        // Implementa a funcionalidade de acordeão para a seção de perguntas frequentes.
+        // Ao clicar em uma pergunta, a classe 'active' é alternada no item pai, o que ativa as transições de CSS.
         document.querySelectorAll('.faq-question').forEach(button => {
             button.addEventListener('click', () => {
                 const faqItem = button.closest('.faq-item');
@@ -555,7 +616,10 @@
             });
         });
 
-        // --- LÓGICA DOS BOTÕES ---
+        // --- LÓGICA DOS BOTÕES DE COMPRA ---
+        // Adiciona um evento de clique genérico a todos os botões da página.
+        // Atualmente, exibe um alerta, indicando que a função final (redirecionamento para checkout) ainda não foi implementada.
+        // Ele ignora cliques em botões que possam estar dentro do componente do player de vídeo.
         document.querySelectorAll('button').forEach(button => {
             button.addEventListener('click', (event) => {
                 if (button.closest('vturb-smartplayer')) return;
